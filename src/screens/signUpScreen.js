@@ -33,16 +33,12 @@ export default signUpScreen = ({ navigation }) => {
         value = { password }
         onChangeText = { setPassword }/>
       </Spacer>
-     
+      { state.errorMessage ? <Text style = { styles.errorMessage }>{ state.errorMessage }</Text> : null }
       <Spacer>
-        <Button title = "Sign Up" 
-                linearGradientProps={{
-                  colors: ['red', 'blue'],
-                  start: { x: 0, y: 0.5 },
-                  end: { x: 1, y: 0.5 },
-                }} 
-                raised
-                onPress = { () => signUp({ email, password }) }/>
+        <Button 
+          title = "Sign Up" 
+          raised
+          onPress = { () => signUp({ email, password }) }/>
       </Spacer>
       <Spacer>  
         <Button title = "Already have an account? Sign in!"  type = "clear" onPress = { () => navigation.navigate('signIn')}/>
@@ -65,4 +61,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 20
   },
+  errorMessage: {
+    color: 'red',
+    fontSize: 16,
+    marginLeft: 30
+  }
 });

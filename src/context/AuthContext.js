@@ -12,14 +12,16 @@ const authReducer = (state, action) => {
             return state;
     };
 };
-const signUp = (dispatch) => async ({ email, password }) => {
-    try{
-        const response = await tracker.post("/signup", { email, password });
-        await AsyncStorage.setItem('', response.data.token);
-        dispatch({ type: 'storing_Token', payload: response.data.token });
-    }catch(err){
-        dispatch({ type: 'add_Error', payload: 'Something went wrong.' });
-    }
+const signUp = (dispatch) => {
+    return async ({ email, password }) => {
+        try{
+            const response = await tracker.post("/signup", { email, password });
+            await AsyncStorage.setItem('', response.data.token);
+            dispatch({ type: 'storing_Token', payload: response.data.token });
+        }catch(err){
+            dispatch({ type: 'add_Error', payload: 'Something went wrong.' });
+        }
+    };
 }; 
 const signIn = (dispatch) => {
     return ({ email, password }) => {

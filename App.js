@@ -28,7 +28,7 @@ const switchNavigator = createSwitchNavigator({
 const App = createAppContainer(switchNavigator);
 export default () => {
   return( <Provider>
-    <App/>
+    <App ref = {(navigator) =>[] }/>
   </Provider>);
 }
 
